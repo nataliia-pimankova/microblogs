@@ -8,5 +8,10 @@ load_dotenv(os.path.join(basedir, '.env'))
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-    FLASK_DEBUG = eval(os.environ.get("FLASK_DEBUG")) or True
+
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'app.db') \
+                              + '?check_same_thread=False'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
